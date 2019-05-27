@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Prologue by HTML5 UP</title>
@@ -12,6 +7,9 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 		<link rel="stylesheet" href="{{asset('css/main.css')}}" />
+		<link rel="stylesheet" href="{{asset('rich_text_area/richtext.min.css')}}" />
+
+
 	</head>
 	<body class="is-preload">
 
@@ -33,7 +31,7 @@
 								<li><a href="#top" id="top-link"><span class="icon fa-home">Intro</span></a></li>
 								<li><a href="#portfolio" id="portfolio-link"><span class="icon fa-th">Portfolio</span></a></li>
 								<li><a href="#about" id="about-link"><span class="icon fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon fa-envelope">Contact</span></a></li>
+								<li><a href="#contact" id="contact-link"><span class="icon fa-envelope">Post a Job</span></a></li>
 							</ul>
 						</nav>
 
@@ -79,57 +77,52 @@
 					<section id="portfolio" class="two">
 						<div class="container">
 
-							<header>
-								<h2>Portfolio</h2>
-							</header>
+							<div class="card row">
+								<div class="card-content">
 
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
-							egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
-							Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis
-							fusce hendrerit lacus ridiculus.</p>
+									<div>
 
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic02.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Ipsum Feugiat</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic03.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Rhoncus Semper</h3>
-										</header>
-									</article>
+										<span class="card-date">31 March 2019</span>
+										<h2>Title</h2>
+										<p>
+											Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repudiandae eos provident fugit aliquid atque architecto fugiat a nesciunt aut, ipsa sed tenetur sint eligendi veniam iusto autem numquam? Distinctio!
+										</p>
+										<br/>
+										<a href="https://news.google.com" class="card-btn" target="_blank">Read Full Article</a>
+									</div>
 								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic04.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Magna Nullam</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic05.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Natoque Vitae</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic06.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Dolor Penatibus</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="{{asset('images/pic07.jpg')}}" alt="" /></a>
-										<header>
-											<h3>Orci Convallis</h3>
-										</header>
-									</article>
+							</div>
+
+
+
+
+
+
+
+
+
+							<div class="card row">
+								<div class="card-content">
+									<div class="card-thumb">
+										Noman Kabeer
+										<img src="{{asset('images/pic02.jpg')}}" alt=''>
+										<div>im php and laravel developer and i worked on vue js as well</div>
+										<span class="badge badge-pill badge-background text-white">php</span>
+										<span class="badge badge-pill badge-background text-white">python</span>
+										<span class="badge badge-pill badge-background text-white">javascript</span>
+										<span class="badge badge-pill badge-background text-white">Ruby</span>
+										<span class="badge badge-pill badge-background text-white">php</span>
+									</div>
+									<div>
+
+										<span class="card-date">31 March 2019</span>
+										<h2>Title</h2>
+										<p>
+											Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repudiandae eos provident fugit aliquid atque architecto fugiat a nesciunt aut, ipsa sed tenetur sint eligendi veniam iusto autem numquam? Distinctio!
+										</p>
+										<br/>
+										<a href="https://news.google.com" class="card-btn" target="_blank">Read Full Article</a>
+									</div>
 								</div>
 							</div>
 
@@ -161,23 +154,18 @@
 						<div class="container">
 
 							<header>
-								<h2>Contact</h2>
+								<h2>Post a Job</h2>
 							</header>
-
-							<p>Elementum sem parturient nulla quam placerat viverra
-							mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia
-							donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc
-							orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
-
 							<form method="post" action="#">
 								<div class="row">
-									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Job Title" /></div>
+									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Job Budget" /></div>
 									<div class="col-12">
-										<textarea name="message" placeholder="Message"></textarea>
+										{{--<textarea name="message" placeholder="Message"></textarea>--}}
+                                        <textarea class="content" name="example"></textarea>
 									</div>
 									<div class="col-12">
-										<input type="submit" value="Send Message" />
+										<input type="submit" value="Post a Job" />
 									</div>
 								</div>
 							</form>
@@ -197,6 +185,7 @@
 
 			</div>
 
+
 		<!-- Scripts -->
 			<script src="{{asset('js/jquery.min.js')}}"></script>
 			<script src="{{asset('js/jquery.scrolly.min.js')}}"></script>
@@ -207,5 +196,13 @@
 			<script src="{{asset('js/main.js')}}"></script>
 			<script src="{{asset('js/app.js')}}"></script>
 
+
+
+			<script src="{{asset('rich_text_area/jquery.richtext.js')}}"></script>
+			<script src="{{asset('rich_text_area/jquery.richtext.min.js')}}"></script>
+        <script>
+            $('.content').richText();
+
+        </script>
 	</body>
 </html>
