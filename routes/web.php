@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('index' , 'index');
+Route::view('index' , 'index')->name('index');
+Route::view('add/job' , 'add_job')->name('post.job');
