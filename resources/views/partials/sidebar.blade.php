@@ -11,11 +11,18 @@
 
         <!-- Nav -->
         <nav id="nav">
+            //client
             <ul>
                 <li><a href="{{route('index')}}" id="top-link"><span class="icon fa-home">Intro</span></a></li>
-                <li><a href="{{route('index')}}" id="portfolio-link"><span class="icon fa-th">Portfolio</span></a></li>
-                <li><a href="{{route('index')}}" id="about-link"><span class="icon fa-user">About Me</span></a></li>
+                {{--<li><a href="{{route('index')}}" id="portfolio-link"><span class="icon fa-th">Portfolio</span></a></li>
+                <li><a href="{{route('index')}}" id="about-link"><span class="icon fa-user">About Me</span></a></li>--}}
                 <li><a href="{{route('post.job')}}" id="contact-link"><span class="icon fa-envelope">Post a Job</span></a></li>
+            </ul>
+
+//freelancer
+            <ul>
+                <li><a href="{{route('index')}}" id="top-link"><span class="icon fa-home">Intro</span></a></li>
+                <li><a href="{{route('index')}}" id="portfolio-link"><span class="icon fa-th">Applied Jobs</span></a></li>
             </ul>
         </nav>
 
