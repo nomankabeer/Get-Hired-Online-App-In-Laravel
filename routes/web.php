@@ -15,5 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('index' , 'index')->name('index');
-Route::view('add/job' , 'add_job')->name('post.job');
+
+
+//client routes
+Route::view('client/index' , 'client/index')->name('index');
+Route::view('add/job' , 'client/add_job')->name('post.job');
+Route::view('job/detail' , 'client/job_detail')->name('job.detail');
+Route::view('job/edit' , 'add_job')->name('job.edit');
+Route::view('job/delete' , 'add_job')->name('job.delete');
+Route::view('user/profile' , 'user_profile');
+
+
+
+//freelancer routes
+Route::view('freelancer/index' , 'freelancer/index')->name('index');
+//Route::view('job/detail' , 'add_job')->name('job.detail');
