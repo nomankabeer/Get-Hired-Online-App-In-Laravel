@@ -13,8 +13,12 @@ class JobBids extends Migration
      */
     public function up()
     {
-        Schema::create('job_bids', function (Blueprint $table) {
+        Schema::create('bids', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->integer('job_id');
+            $table->string('proposal');
+            $table->string('bid_amount');
             $table->timestamps();
         });
     }

@@ -15,6 +15,13 @@ class Job extends Migration
     {
         Schema::create('job', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->integer('budget');
+            $table->string('title');
+            $table->string('description');
+            $table->string('skills_required');
+            $table->integer('arawded')->default(0);
+            $table->integer('is_completed')->default(0);
             $table->timestamps();
         });
     }
