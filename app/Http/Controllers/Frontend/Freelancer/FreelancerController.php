@@ -20,6 +20,10 @@ class FreelancerController extends Controller
         return $this->freelancerProfileRepository->getFreelancerProfile();
     }
 
+    public function updateAboutMe(Request $request){
+        return $this->freelancerProfileRepository->updateFreelancerAboutMe($request);
+    }
+
     public function updateTitleAndProfileImage(Request $request){
         return $this->freelancerProfileRepository->updateProfileImgAndTitle($request);
     }
@@ -33,5 +37,29 @@ class FreelancerController extends Controller
 
     public function deleteEducation($id){
         return $this->freelancerProfileRepository->deleteFreelancerEducation($id);
+    }
+
+    public function addExperience(Request $request){
+        return $this->freelancerProfileRepository->addFreelancerExperience($request->all());
+    }
+
+    public function updateExperience(Request $request){
+        return $this->freelancerProfileRepository->updateFreelancerExperience($request->all());
+    }
+
+    public function deleteExperience($id){
+        return $this->freelancerProfileRepository->deleteFreelancerExperience($id);
+    }
+
+    public function addSkill(Request $request){
+        return $this->freelancerProfileRepository->addFreelancerSkill($request->all());
+    }
+
+    public function updateSkill(Request $request){
+        return $this->freelancerProfileRepository->updateFreelancerSkill($request->all());
+    }
+
+    public function deleteSkill($id){
+        return $this->freelancerProfileRepository->deleteFreelancerSkill($id);
     }
 }
