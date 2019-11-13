@@ -30,3 +30,6 @@ Route::view('user/profile' , 'user_profile');
 //freelancer routes
 Route::view('freelancer/index' , 'freelancer/index')->name('index');
 //Route::view('job/detail' , 'add_job')->name('job.detail');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
