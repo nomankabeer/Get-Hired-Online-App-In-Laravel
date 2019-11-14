@@ -2,22 +2,7 @@
 
 @section('content')
     <!-- Intro -->
-    <section id="top" class="one dark cover">
-       {{-- <div class="container">
-
-            <header>
-                <h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
-                    site template designed by <a href="http://html5up.net">HTML5 UP</a>.</h2>
-                <p>Ligula scelerisque justo sem accumsan diam quis<br />
-                    vitae natoque dictum sollicitudin elementum.</p>
-            </header>
-
-            <footer>
-                <a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-            </footer>
-
-        </div>--}}
-
+    <section id="top" class="one dark cover paddingNone" >
         <div class="parent">
             <div class="box-one">
                 <h1>
@@ -33,8 +18,8 @@
                     <a class="contact-link" target="_blank" href="https://www.instagram.com/akhtar_sheraliat/"> Contact Me</a> </div>
             </div>
             <div class="box-two">
-                <div class="image" >
-                    <img src="https://s.cdpn.io/profiles/user/1206184/512.jpg?1568477798" >
+                <div class="profile_image" >
+                    <img class="profile_img" src="https://s.cdpn.io/profiles/user/1206184/512.jpg?1568477798" >
                 </div>
             </div>
         </div>
