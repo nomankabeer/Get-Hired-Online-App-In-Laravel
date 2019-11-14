@@ -3,7 +3,7 @@
 @section('content')
     <!-- Intro -->
     <section id="top" class="one dark cover">
-        <div class="container">
+       {{-- <div class="container">
 
             <header>
                 <h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
@@ -16,11 +16,35 @@
                 <a href="#portfolio" class="button scrolly">Magna Aliquam</a>
             </footer>
 
+        </div>--}}
+
+        <div class="parent">
+            <div class="box-one">
+                <h1>
+                    Hi,<br />
+                    I’m
+                    <span class="color-secondary">Akhtar Abbas
+      </span>
+                    <br />
+                    I,m a <span class="color-secondary">Web Developer</span>, at
+                    <a class="color-secondary" target="_blank" href="http://jsdevs.dev">JSdevs</a>
+                </h1>
+                <div style="margin-top:50px;">
+                    <a class="contact-link" target="_blank" href="https://www.instagram.com/akhtar_sheraliat/"> Contact Me</a> </div>
+            </div>
+            <div class="box-two">
+                <div class="image" >
+                    <img src="https://s.cdpn.io/profiles/user/1206184/512.jpg?1568477798" >
+                </div>
+            </div>
         </div>
+
+
     </section>
 
     <!-- Portfolio -->
     <section id="portfolio" class="two">
+
         <div class="container">
 
             <div class="card row">

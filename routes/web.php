@@ -29,7 +29,7 @@ Route::view('user/profile' , 'user_profile');
 
 //freelancer routes
 Route::view('freelancer/index' , 'freelancer/index')->name('index');
-Route::view('freelancer/profile' , 'freelancer/index')->name('index');
+Route::view('freelancer/profile' , 'freelancer/profile')->name('index');
 //Route::view('job/detail' , 'add_job')->name('job.detail');
 Auth::routes();
 
