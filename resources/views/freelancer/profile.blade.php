@@ -1,108 +1,118 @@
 @extends('layouts.master')
 
 @section('content')
+@include('modal.freelancerProfile.profileUpdate')
+@include('modal.freelancerProfile.aboutMe')
+@include('modal.freelancerProfile.education')
+@include('modal.freelancerProfile.experience')
+@include('modal.freelancerProfile.skills')
     <!-- Intro -->
-    <section id="top" class="one dark cover paddingNone" >
+    <section id="top" class="one dark cover paddingNone">
         <div class="parent">
             <div class="box-one">
                 <h1>
-                    Hi,<br />
+                    Hi,<br/>
                     I’m
-                    <span class="color-secondary">Akhtar Abbas
-      </span>
-                    <br />
+                    <span class="color-secondary">Akhtar Abbas</span>
+                    <br/>
                     I,m a <span class="color-secondary">Web Developer</span>, at
                     <a class="color-secondary" target="_blank" href="http://jsdevs.dev">JSdevs</a>
                 </h1>
                 <div style="margin-top:50px;">
-                    <a class="contact-link" target="_blank" href="https://www.instagram.com/akhtar_sheraliat/"> Contact Me</a> </div>
+                    <a class="contact-link" target="_blank" href="https://www.instagram.com/akhtar_sheraliat/"> Contact
+                        Me</a></div>
             </div>
             <div class="box-two">
-                <div class="profile_image" >
-                    <img class="profile_img" src="https://s.cdpn.io/profiles/user/1206184/512.jpg?1568477798" >
+                <div class="profile_image">
+                    <img class="profile_img" src="https://s.cdpn.io/profiles/user/1206184/512.jpg?1568477798">
                 </div>
+                <a class="" href="#update-profile" uk-toggle>
+                    <button class="uk-button-primary uk-button-small">update Profile</button>
+                </a>
             </div>
         </div>
-
-
     </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="two">
-
-        <div class="container">
-
-            <div class="card row">
-                <div class="card-content">
-
-                    <div>
-
-                        <span class="card-date">31 March 2019</span>
-                        <h2>Title</h2>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repudiandae eos provident fugit aliquid atque architecto fugiat a nesciunt aut, ipsa sed tenetur sint eligendi veniam iusto autem numquam? Distinctio!
-                        </p>
-                        <br/>
-                        <a href="https://news.google.com" class="card-btn" target="_blank">Read Full Article</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="card row">
-                <div class="card-content">
-                    <div class="card-thumb">
-                        Noman Kabeer
-                        <img src="{{asset('images/pic02.jpg')}}" alt=''>
-                        <div>im php and laravel developer and i worked on vue js as well</div>
-                        <span class="badge badge-pill badge-background text-white">php</span>
-                        <span class="badge badge-pill badge-background text-white">python</span>
-                        <span class="badge badge-pill badge-background text-white">javascript</span>
-                        <span class="badge badge-pill badge-background text-white">Ruby</span>
-                        <span class="badge badge-pill badge-background text-white">php</span>
-                    </div>
-                    <div>
-
-                        <span class="card-date">31 March 2019</span>
-                        <h2>Title</h2>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel repudiandae eos provident fugit aliquid atque architecto fugiat a nesciunt aut, ipsa sed tenetur sint eligendi veniam iusto autem numquam? Distinctio!
-                        </p>
-                        <br/>
-                        <a href="https://news.google.com" class="card-btn" target="_blank">Read Full Article</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
     <!-- About Me -->
-    <section id="about" class="three">
-        <div class="container">
+    <section  class="one">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1">
+            <div class="uk-card-badge uk-labefl">
+                <a class="" href="#about-me" uk-toggle>
+                    <button class="uk-button-primary uk-button-small">update</button>
+                </a>
+            </div>
+            <h3 class="uk-card-title">About ME</h3>
+            <p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+<br>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1">
+            <div class="uk-card-badge uk-labefl">
+                <a class="" href="#education" uk-toggle>
+                    <button class="uk-button-primary uk-button-small">update</button>
+                </a>
+            </div>
+            <h3 class="uk-card-title">Education</h3>
+            <p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <br>
 
-            <header>
-                <h2>About Me</h2>
-            </header>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1">
+            <div class="uk-card-badge uk-labefl">
+                <div class="uk-card-badge uk-labefl">
+                    <a class="" href="#experience" uk-toggle>
+                        <button class="uk-button-primary uk-button-small">update</button>
+                    </a>
+                </div>
+            </div>
+            <h3 class="uk-card-title">Experience</h3>
+            <p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <br>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1">
+            <div class="uk-card-badge uk-labefl">
+                <div class="uk-card-badge uk-labefl">
+                    <a class="" href="#skills" uk-toggle>
+                        <button class="uk-button-primary uk-button-small">update</button>
+                    </a>
+                </div>
+            </div>
+            <h3 class="uk-card-title">Skills</h3>
+            <p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
 
-            <a href="#" class="image featured"><img src="{{asset('images/pic08.jpg')}}" alt="" /></a>
+    </section>
 
-            <p>Tincidunt eu elit diam magnis pretium accumsan etiam id urna. Ridiculus
-                ultricies curae quis et rhoncus velit. Lobortis elementum aliquet nec vitae
-                laoreet eget cubilia quam non etiam odio tincidunt montes. Elementum sem
-                parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper
-                dolor. Libero rutrum ut lacinia donec curae mus vel quisque sociis nec
-                ornare iaculis.</p>
+<hr>
+    <section  class="one">
+
+        <h3 class="uk-card-title">Job Reviews</h3>
+
+
+        <div class="uk-card uk-card-default uk-width-1">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <img class="uk-border-circle" width="40" height="40" src="images/avatar.jpg">
+                    </div>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">JOB Title</h3>
+                        <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            </div>
 
         </div>
+
+        <br>
+
+
+
+
     </section>
+
+
 
 
 

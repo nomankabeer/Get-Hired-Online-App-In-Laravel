@@ -8,7 +8,10 @@
 		<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 		<link rel="stylesheet" href="{{asset('css/main.css')}}" />
 		<link rel="stylesheet" href="{{asset('rich_text_area/richtext.min.css')}}" />
-<style>
+		<!-- UIkit CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
+
+		<style>
 	@yield('css')
 </style>
 
@@ -26,10 +29,7 @@
 		<!-- Footer -->
 			<div id="footer">
 
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+
 
 			</div>
 
@@ -43,7 +43,9 @@
 			<script src="{{asset('js/util.js')}}"></script>
 			<script src="{{asset('js/main.js')}}"></script>
 			<script src="{{asset('js/app.js')}}"></script>
-
+		<!-- UIkit JS -->
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
 
 
 			<script src="{{asset('rich_text_area/jquery.richtext.js')}}"></script>
