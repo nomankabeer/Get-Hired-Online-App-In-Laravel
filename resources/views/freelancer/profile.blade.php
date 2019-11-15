@@ -47,11 +47,25 @@
         <div class="uk-card uk-card-default uk-card-body uk-width-1">
             <div class="uk-card-badge uk-labefl">
                 <a class="" href="#education" uk-toggle>
-                    <button class="uk-button-primary uk-button-small">update</button>
+                    <button class="uk-button-primary uk-button-small">Add</button>
                 </a>
             </div>
             <h3 class="uk-card-title">Education</h3>
-            <p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <div class="uk-grid-match uk-child-width-expand@s uk-text-center" uk-grid>
+                <div>
+            <div class="uk-child-width-1-3@s" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                        <h3 class="uk-card-title">Small</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+
+            </div>
         </div>
         <br>
 
@@ -59,7 +73,7 @@
             <div class="uk-card-badge uk-labefl">
                 <div class="uk-card-badge uk-labefl">
                     <a class="" href="#experience" uk-toggle>
-                        <button class="uk-button-primary uk-button-small">update</button>
+                        <button class="uk-button-primary uk-button-small">Add</button>
                     </a>
                 </div>
             </div>
@@ -71,7 +85,7 @@
             <div class="uk-card-badge uk-labefl">
                 <div class="uk-card-badge uk-labefl">
                     <a class="" href="#skills" uk-toggle>
-                        <button class="uk-button-primary uk-button-small">update</button>
+                        <button class="uk-button-primary uk-button-small">Add</button>
                     </a>
                 </div>
             </div>
