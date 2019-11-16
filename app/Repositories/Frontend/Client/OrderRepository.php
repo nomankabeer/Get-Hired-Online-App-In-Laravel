@@ -10,10 +10,10 @@ namespace App\Repositories\Frontend\Client;
 use App\Job;
 use App\Order;
 use App\Repositories\BaseRepository;
-use App\Repositories\ServiceProviders\Classes\OrderDeliveryStatusUpdateServiceProvider;
-use App\Repositories\ServiceProviders\Classes\OrderReviewServiceProvider;
-use App\Repositories\ServiceProviders\Classes\OrderStoreServiceProvider;
-use App\Repositories\ServiceProviders\Classes\OrderDetailServiceProvider;
+use App\Service\Classes\OrderDeliveryStatusUpdateServiceProvider;
+use App\Service\Classes\OrderReviewServiceProvider;
+use App\Service\Classes\OrderStoreServiceProvider;
+use App\Service\Classes\OrderDetailServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 class OrderRepository extends BaseRepository
