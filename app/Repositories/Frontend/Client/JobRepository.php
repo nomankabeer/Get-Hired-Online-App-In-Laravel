@@ -9,8 +9,8 @@
 namespace App\Repositories\Frontend\Client;
 use App\Job;
 use App\Repositories\BaseRepository;
-use App\Repositories\ServiceProviders\Classes\JobAwardServiceProvider;
-use App\Repositories\ServiceProviders\Classes\JobStoreServiceProvider;
+use App\Service\Classes\JobAwardServiceProvider;
+use App\Service\Classes\JobStoreServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 class JobRepository extends BaseRepository
