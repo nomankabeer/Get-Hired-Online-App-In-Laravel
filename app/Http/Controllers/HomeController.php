@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
 class HomeController extends Controller
 {
     /**
@@ -26,14 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
-$role = Role::findById(1);
-$permission = Permission::findById(1);
-      $role->givePermissionTo($permission);
-        $permission->assignRole($role);
-
-
         return view('home');
     }
 }

@@ -2,14 +2,13 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable , HasRoles;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -37,9 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     const adminRoleId = 1;
     const freelancerRoleId = 2;
     const clientRoleId = 3;
 }
-
