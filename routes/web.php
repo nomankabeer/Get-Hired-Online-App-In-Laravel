@@ -23,7 +23,12 @@ Route::group([
 });
 
 
-
+Route::group([
+    'middleware' => 'auth',
+], function(){
+//    Route::view('user/profile' , 'user_profile');
+    Route::view('/home' , 'user_profile');
+});
 
 
 
