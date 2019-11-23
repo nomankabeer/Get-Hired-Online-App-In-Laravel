@@ -24,12 +24,13 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => 'freelancer',
 ], function(){
 //    Route::view('user/profile' , 'user_profile');
-    Route::view('/home' , 'user_profile');
+    Route::view('/homeqwe' , 'client/index');
 });
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout')->middleware('auth');
 
 
 
