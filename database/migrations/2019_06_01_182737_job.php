@@ -19,9 +19,9 @@ class Job extends Migration
             $table->integer('budget');
             $table->string('title');
             $table->string('description');
-            $table->string('skills_required');
-            $table->integer('awarded')->default(0);
-            $table->integer('is_completed')->default(0);
+            $table->string('skills_required')->nullable();
+            $table->tinyInteger('is_awarded')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
