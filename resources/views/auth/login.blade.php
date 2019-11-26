@@ -1,11 +1,10 @@
 @extends('layouts.app')
 @section('content')
+    @include('partials.flash_message')
 <div class="container" id="container">
     <div class="form-container sign-up-container">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-
             <h1>Create Account</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
