@@ -16,7 +16,10 @@ class UserDetail extends Migration
         Schema::create('user_detail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('skills');
+            $table->string('title')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('skills')->nullable();
             $table->timestamps();
         });
     }

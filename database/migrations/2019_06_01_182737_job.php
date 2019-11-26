@@ -20,7 +20,6 @@ class Job extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('skills_required')->nullable();
-            $table->tinyInteger('is_awarded')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

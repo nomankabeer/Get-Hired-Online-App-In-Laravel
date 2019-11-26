@@ -19,6 +19,8 @@ class JobBids extends Migration
             $table->integer('job_id');
             $table->string('proposal');
             $table->string('bid_amount');
+            $table->tinyInteger('is_awarded')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
