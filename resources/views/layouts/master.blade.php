@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="{{asset('rich_text_area/richtext.min.css')}}" />
 		<!-- UIkit CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
-
+		<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 		<style>
 	@yield('css')
 </style>
@@ -23,7 +23,9 @@
         <div id="app">
 		<!-- Main -->
         <div id="main">
+			@include('partials.flash_message')
             @yield('content')
+
 			</div>
         </div>
 		<!-- Footer -->
@@ -50,9 +52,11 @@
 
 			<script src="{{asset('rich_text_area/jquery.richtext.js')}}"></script>
 			<script src="{{asset('rich_text_area/jquery.richtext.min.js')}}"></script>
+		<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
         <script>
             $('.content').richText();
 
         </script>
+		@stack('script')
 	</body>
 </html>
