@@ -51,6 +51,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'account_status' => \App\Http\Middleware\AccountStatus::class,
+        'client' => \App\Http\Middleware\Client::class,
         'freelancer' => \App\Http\Middleware\Freelancer::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
