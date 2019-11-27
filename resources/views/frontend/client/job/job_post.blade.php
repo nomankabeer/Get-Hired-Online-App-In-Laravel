@@ -6,13 +6,14 @@
             <header>
                 <h2>Post a Job</h2>
             </header>
-            <form method="post" action="#">
+            <form method="post" action="{{route('client.job.post')}}">
+                @csrf
                 <div class="row">
-                    <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Job Title" /></div>
-                    <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Job Budget" /></div>
+                    <div class="col-6 col-12-mobile"><input type="text" name="title" placeholder="Job Title" /></div>
+                    <div class="col-6 col-12-mobile"><input type="text" name="budget" placeholder="Job Budget" /></div>
                     <div class="col-12">
                         {{--<textarea name="message" placeholder="Message"></textarea>--}}
-                        <textarea class="content" name="example"></textarea>
+                        <textarea class="content" name="description"></textarea>
                     </div>
                     <div class="col-12">
                         <input type="submit" value="Post a Job" />
