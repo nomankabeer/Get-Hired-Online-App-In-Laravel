@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class JobDelivery extends Migration
+class OrderDelivery extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class JobDelivery extends Migration
      */
     public function up()
     {
-        Schema::create('job_delivery', function (Blueprint $table) {
+        Schema::create('order_delivery', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('job_id');
-            $table->tinyInteger('is_accepted');
+            $table->integer('order_id');
+            $table->tinyInteger('status')->default(0);
             $table->string('content');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class JobDelivery extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_delivery');
+        Schema::dropIfExists('order_delivery');
     }
 }
