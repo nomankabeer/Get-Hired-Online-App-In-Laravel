@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend\Order;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class ReviewController extends Controller
 {
     /**
