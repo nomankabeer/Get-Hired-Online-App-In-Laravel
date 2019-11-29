@@ -28,4 +28,7 @@ class OrderController extends Controller
     public function orderUpdateDeliveryStatus($delivery_id , $status_id){
         return $this->orderRepository->updateDeliveryStatus($delivery_id , $status_id);
     }
+    public function orderReview(Request $request){
+        return $this->orderRepository->clientOrderReview($request->all());
+    }
 }
