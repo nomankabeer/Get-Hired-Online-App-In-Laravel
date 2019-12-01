@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend\Order;
 
 use Illuminate\Http\Request;
-
-class BidController extends Controller
+use App\Http\Controllers\Controller;
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
