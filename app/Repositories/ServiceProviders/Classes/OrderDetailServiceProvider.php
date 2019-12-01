@@ -6,10 +6,10 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\Frontend\Client\ServiceProviders\Order;
+namespace App\Repositories\ServiceProviders\Classes;
 use App\Order;
-use App\Repositories\BaseRepository;
-class OrderDetail extends BaseRepository
+use App\Repositories\ServiceProviders\BaseServiceProvider;
+class OrderDetailServiceProvider extends BaseServiceProvider
 {
     public function clientOrderDetail($order_id){
         $order = null;
