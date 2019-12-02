@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role_id == User::freelancerRoleId){
-            return view('frontend.freelancer.index');
+            return redirect()->route('freelancer.profile');
         }
         elseif(Auth::user()->role_id == User::clientRoleId){
             return view('frontend.client.index');
