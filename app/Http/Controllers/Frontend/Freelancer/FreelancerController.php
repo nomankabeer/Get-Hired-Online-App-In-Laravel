@@ -6,25 +6,23 @@
  * Time: 5:20 AM
  */
 namespace App\Http\Controllers\Frontend\Freelancer;
+use App\Repositories\Frontend\Freelancer\FreelancerProfileRepository;
 use Illuminate\Http\Request;
 use Auth;
-use App\Repositories\Frontend\Freelancer\BidRepository;
 use App\Http\Controllers\Controller;
-use App\Repositories\Traits\FreelancerProfileTrait;
 class FreelancerController extends Controller
 {
-    use FreelancerProfileTrait;
-    protected $bidRepository = null;
-    public function __construct(BidRepository $bidRepository){
-        $this->bidRepository = $bidRepository;
+
+    protected $freelancerProfileRepository = null;
+    public function __construct(FreelancerProfileRepository $freelancerProfileRepository){
+        $this->freelancerProfileRepository = $freelancerProfileRepository;
     }
 
     public function profile(){
-        $data = $this->getFreelancerProfileData(Auth::user()->name)['data'];
-        return view('frontend.freelancer.profile.profile' , compact('data'));
+        return $this->freelancerProfileRepository->getFreelancerProfile();
     }
 
     public function updateTitleAndProfileImage(Request $request){
-
+        return $this->freelancerProfileRepository->updateProfileImgAndTitle($request);
     }
 }
