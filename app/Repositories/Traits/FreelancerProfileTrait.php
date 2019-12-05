@@ -9,6 +9,7 @@
 namespace App\Repositories\Traits;
 use App\Bids;
 use App\Order;
+use App\Skill;
 use App\User;
 trait FreelancerProfileTrait
 {
@@ -22,7 +23,7 @@ trait FreelancerProfileTrait
                 $msg = ["Freelancer profile found"];
                 $data['user_detail'] = $active_account->with(['userDetail' , 'userDetail.skills:skill.id,skill.name' , 'userDetail.userEducation' , 'userDetail.userExperience'])->first();
                 $data['order_detail'] = $this->getUserOrderDetail($data['user_detail']->id);
-//                dd($data['user_detail']->toArray() , $data['order_detail']->toArray());
+                $data['skills'] = Skill::get()->all();
             }
             else{
                 $status = false;
