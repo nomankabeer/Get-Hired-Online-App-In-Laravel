@@ -8,13 +8,20 @@
 
 namespace App\Repositories\Frontend\Freelancer;
 use App\Repositories\BaseRepository;
-use App\Repositories\ServiceProviders\Classes\FreelancerAddEducation;
-use App\Repositories\ServiceProviders\Classes\FreelancerDeleteEducation;
-use App\Repositories\ServiceProviders\Classes\FreelancerProfileUpdateTitleAndImageServiceProvider;
-use App\Repositories\ServiceProviders\Classes\FreelancerUpdateEducation;
+use App\Services\Classes\FreelancerAddEducation;
+use App\Services\Classes\FreelancerAddExperience;
+use App\Services\Classes\FreelancerDeleteEducation;
+use App\Services\Classes\FreelancerDeleteExperience;
+use App\Services\Classes\FreelancerProfileUpdateTitleAndImageServiceProvider;
+use App\Services\Classes\FreelancerUpdateAboutMe;
+use App\Services\Classes\FreelancerUpdateEducation;
+use App\Services\Classes\FreelancerUpdateExperience;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Traits\UploadFileTrait;
 use App\Repositories\Traits\FreelancerProfileTrait;
+use App\Services\Classes\FreelancerAddSkill;
+use App\Services\Classes\FreelancerUpdateSkill;
+use App\Services\Classes\FreelancerDeleteSkill;
 class FreelancerProfileRepository extends BaseRepository
 {
     use UploadFileTrait , FreelancerProfileTrait;
@@ -22,20 +29,35 @@ class FreelancerProfileRepository extends BaseRepository
     protected $addEducation = null;
     protected $updateEducation = null;
     protected $deleteEducation = null;
+    protected $addExperience = null;
+    protected $updateExperience = null;
+    protected $deleteExperience = null;
     protected $updateProfile = null;
+    protected $updateAboutMe = null;
     protected $freelancerProfileRoute = 'freelancer.profile';
     protected $freelancerProfileView = 'frontend.freelancer.profile.profile';
 
     public function __construct(
-        FreelancerAddEducation $addEducation ,
         FreelancerProfileUpdateTitleAndImageServiceProvider $updateProfile ,
+        FreelancerAddEducation $addEducation ,
         FreelancerUpdateEducation $updateEducation ,
-        FreelancerDeleteEducation $deleteEducation )
+        FreelancerDeleteEducation $deleteEducation,
+        FreelancerAddExperience $addExperience ,
+        FreelancerUpdateExperience $updateExperience,
+        FreelancerDeleteExperience $deleteExperience,
+        FreelancerUpdateAboutMe $updateAboutMe,
+        FreelancerAddSkill $addSkill
+    )
     {
-        $this->addEducation = $addEducation;
         $this->updateProfile = $updateProfile;
+        $this->addEducation = $addEducation;
         $this->updateEducation = $updateEducation;
         $this->deleteEducation = $deleteEducation;
+        $this->addExperience = $addExperience;
+        $this->updateExperience = $updateExperience;
+        $this->deleteExperience = $deleteExperience;
+        $this->updateAboutMe = $updateAboutMe;
+        $this->addSkill = $addSkill;
     }
 
     public function updateProfileImgAndTitle($data){
@@ -67,5 +89,47 @@ class FreelancerProfileRepository extends BaseRepository
         $data = $this->deleteEducation->deleteEducation($id);
         return $this->redirectRoute($data['status'] , $data['msg']);
     }
+
+    public function addFreelancerExperience($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->addExperience->addExperience($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+    public function updateFreelancerExperience($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->updateExperience->updateExperience($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+    public function deleteFreelancerExperience($id){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->deleteExperience->deleteExperience($id);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+    public function updateFreelancerAboutMe($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->updateAboutMe->updateAboutMe($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+    public function addFreelancerSkill($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->addSkill->addSkill($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+   /* public function updateFreelancerSkill($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->updateSkill->updateSkill($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }
+
+    public function deleteFreelancerSkill($id){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->deleteSkill->deleteSkill($id);
+        return $this->redirectRoute($data['status'] , $data['msg']);
+    }*/
 
 }
