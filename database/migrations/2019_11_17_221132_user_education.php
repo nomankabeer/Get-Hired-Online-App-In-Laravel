@@ -17,9 +17,9 @@ class UserEducation extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('degree_title');
-            $table->string('description');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
