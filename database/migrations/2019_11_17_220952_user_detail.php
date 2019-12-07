@@ -19,7 +19,7 @@ class UserDetail extends Migration
             $table->string('title')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('skills')->nullable();
+            $table->text('about_me')->nullable();
             $table->timestamps();
         });
     }
