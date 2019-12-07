@@ -16,10 +16,10 @@ class UserExperience extends Migration
         Schema::create('user_experience', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('designation');
-            $table->string('description');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
