@@ -8,6 +8,7 @@
 
 namespace App\Repositories\Frontend\Freelancer;
 use App\Repositories\BaseRepository;
+use App\Repositories\ServiceProviders\Classes\FreelancerAddEducation;
 use App\Repositories\ServiceProviders\Classes\FreelancerProfileUpdateTitleAndImageServiceProvider;
 use App\User;
 use App\UserDetail;
@@ -20,8 +21,13 @@ class FreelancerProfileRepository extends BaseRepository
 {
     use UploadFileTrait , FreelancerProfileTrait;
     protected $redirect = null;
+    protected $addEducation = null;
     protected $freelancerProfileRoute = 'freelancer.profile';
     protected $freelancerProfileView = 'frontend.freelancer.profile.profile';
+
+    public function __construct(FreelancerAddEducation $addEducation){
+        $this->addEducation = $addEducation;
+    }
 
     public function updateProfileImgAndTitle($data){
         $updateProfile = new FreelancerProfileUpdateTitleAndImageServiceProvider();
@@ -34,5 +40,11 @@ class FreelancerProfileRepository extends BaseRepository
         $data = $this->getFreelancerProfileData(Auth::user()->name)['data'];
         $this->redirect = $this->freelancerProfileView;
         return $this->redirectView(true  , [] , $data);
+    }
+
+    public function addFreelancerEducation($data){
+        $this->redirect = $this->freelancerProfileRoute;
+        $data = $this->addEducation->addEducation($data);
+        return $this->redirectRoute($data['status'] , $data['msg']);
     }
 }
