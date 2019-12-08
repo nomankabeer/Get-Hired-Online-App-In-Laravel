@@ -12,32 +12,17 @@ class User extends Authenticatable
     const adminRoleId = 1;
     const freelancerRoleId = 2;
     const clientRoleId = 3;
-    const accountBlockId = 0;
-    const accountActiveId = 1;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    const accountBlock = 1;
+    const accountActive = 0;
+
     protected $fillable = [
         'name', 'email', 'password', 'role_id'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
