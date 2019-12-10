@@ -10,13 +10,14 @@ namespace App\Repositories\ServiceProviders\Classes;
 use App\Repositories\ServiceProviders\BaseServiceProvider;
 use App\Repositories\Traits\UploadFileTrait;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\ServiceProviders\Interfaces\FreelancerUpdateProfile;
 class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseServiceProvider implements FreelancerUpdateProfile
 {
     use UploadFileTrait;
-    public function updateFreelancerProfileImgAndTitle($data , $user_id){
-        $user = User::find($user_id);
+    public function updateFreelancerProfileImgAndTitle($data){
+        $user = Auth::user();
         $msg = array();
         $status = false;
         if($user != null){
