@@ -14,7 +14,7 @@ trait FreelancerProfileTrait
 {
     public function getFreelancerProfileData($name){
         $data = null;
-        $freelancer = User::select('id' , 'name' , 'email' , 'created_at')->where('name' , $name)->where('role_id' , User::freelancerRoleId);
+        $freelancer = User::select('id' , 'name' , 'email' , 'avatar' , 'created_at')->where('name' , $name)->where('role_id' , User::freelancerRoleId);
         if($freelancer->count()){
             $active_account = $freelancer->where('account_status' , User::accountActive);
             if($active_account->count()){
