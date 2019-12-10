@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+
     const adminRoleId = 1;
     const freelancerRoleId = 2;
     const clientRoleId = 3;
@@ -27,4 +28,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function userDetail(){
+        return $this->hasOne(UserDetail::class ,  'user_id' , 'id' );
+    }
 }
