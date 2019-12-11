@@ -26,4 +26,12 @@ class FreelancerController extends Controller
     public function addEducation(Request $request){
         return $this->freelancerProfileRepository->addFreelancerEducation($request->all());
     }
+
+    public function updateEducation(Request $request){
+        return $this->freelancerProfileRepository->updateFreelancerEducation($request->all());
+    }
+
+    public function deleteEducation($id){
+        return $this->freelancerProfileRepository->deleteFreelancerEducation($id);
+    }
 }
