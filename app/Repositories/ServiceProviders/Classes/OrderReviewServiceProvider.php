@@ -5,13 +5,11 @@
  * Date: 24-Nov-2019
  * Time: 5:20 AM
  */
-
-namespace App\Repositories\Frontend\Client\ServiceProviders\Order;
+namespace App\Repositories\ServiceProviders\Classes;
 use App\Order;
-use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\ServiceProviders\BaseServiceProvider;
 use Illuminate\Support\Facades\Validator;
-class OrderReviewServiceProvider extends BaseRepository
+class OrderReviewServiceProvider extends BaseServiceProvider
 {
     public function reviewOrder($data){
         $this->validateReviewData($data)->validate();
