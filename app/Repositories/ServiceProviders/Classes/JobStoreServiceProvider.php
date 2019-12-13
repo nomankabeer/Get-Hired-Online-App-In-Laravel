@@ -15,16 +15,6 @@ class JobStoreServiceProvider extends BaseServiceProvider
     public function storeClientJob($data){
         $this->validateStoreData($data)->validate();
         $data = $this->processDataToStore($data);
-        return $this->createJob($data);
-    }
-    private function validateStoreData($data){
-        return Validator::make($data, [
-            'budget' => ['required', 'integer', 'alpha_dash' ],
-            'title' => ['required', 'string', 'min:10'],
-            'description' => ['required', 'string', 'min:20'],
-        ]);
-    }
-    private function createJob($data){
         if(Job::create($data)){
             $status = true;
             $msg = ['Job Posted'];
@@ -38,5 +28,12 @@ class JobStoreServiceProvider extends BaseServiceProvider
             'msg' => $msg
         );
         return $data;
+    }
+    private function validateStoreData($data){
+        return Validator::make($data, [
+            'budget' => ['required', 'integer', 'alpha_dash' ],
+            'title' => ['required', 'string', 'min:10'],
+            'description' => ['required', 'string', 'min:20'],
+        ]);
     }
 }
