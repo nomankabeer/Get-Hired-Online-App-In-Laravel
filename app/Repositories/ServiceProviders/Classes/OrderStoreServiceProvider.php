@@ -6,11 +6,10 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\Frontend\Client\ServiceProviders\Order;
+namespace App\Repositories\ServiceProviders\Classes;
 use App\Order;
-use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Validator;
-class StoreOrderService extends BaseRepository
+use App\Repositories\ServiceProviders\BaseServiceProvider;
+class OrderStoreServiceProvider extends BaseServiceProvider
 {
     public function createOrderForUser($data){
         if(Order::create($data)){
