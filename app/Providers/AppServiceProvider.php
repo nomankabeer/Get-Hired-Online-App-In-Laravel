@@ -9,21 +9,8 @@ use App\OrderDelivery;
 use View;
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+    public function register(){
     }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         View::share('clientRoleId', User::clientRoleId);
@@ -34,6 +21,5 @@ class AppServiceProvider extends ServiceProvider
         View::share('orderDeliveryStatusRejectedId', OrderDelivery::orderDeliveryStatusRejectedId);
 
         View::share('orderCompletedId', Order::orderCompletedId);
-
     }
 }
