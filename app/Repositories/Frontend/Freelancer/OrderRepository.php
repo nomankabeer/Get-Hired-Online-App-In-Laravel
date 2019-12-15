@@ -12,7 +12,7 @@ use App\Order;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
-class FreelancerRepository extends BaseRepository
+class OrderRepository extends BaseRepository
 {
     protected $redirect = null;
     protected $orderDetailView = 'frontend.client.job_detail';
