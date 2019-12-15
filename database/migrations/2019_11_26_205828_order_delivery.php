@@ -16,7 +16,7 @@ class OrderDelivery extends Migration
         Schema::create('order_delivery', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('order_id');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->string('content');
             $table->string('file')->nullable();
             $table->timestamps();
