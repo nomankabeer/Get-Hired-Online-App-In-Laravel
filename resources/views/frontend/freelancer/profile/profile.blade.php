@@ -4,6 +4,7 @@
     @include('modal.freelancerProfile.profileUpdate')
     @include('modal.freelancerProfile.aboutMe')
     @include('modal.freelancerProfile.education')
+    @include('modal.freelancerProfile.education_update')
     @include('modal.freelancerProfile.experience')
     @include('modal.freelancerProfile.skills')
     <!-- Intro -->
@@ -20,7 +21,7 @@
             </div>
             <div class="box-two">
                 <div class="profile_image">
-                    <img class="profile_img" src="{{asset('storage/images/userProfile').'/'.$data['user_detail']->avatar}}">
+                    <img class="profile_img" src="{{asset('/').$data['user_detail']->avatar}}">
                 </div>
                 <span class="card-title modal-title">{{$data['user_detail']->userDetail->first_name}} {{$data['user_detail']->userDetail->last_name}}</span>
                 <a class="" href="#update-profile" uk-toggle>
@@ -43,8 +44,8 @@
         <br>
         <div class="uk-card uk-card-default uk-card-body uk-width-1">
             <div class="uk-card-badge uk-labefl">
-                <a class="" href="#education" uk-toggle>
-                    <button class="uk-button-primary uk-button-small">Add</button>
+                <a class="" href="#education_add" uk-toggle>
+                    <button class="uk-button-primary uk-button-small add_education_button">Add</button>
                 </a>
             </div>
             <h3 class="uk-card-title">Education</h3>
@@ -59,6 +60,10 @@
                                         <h3 class="uk-card-title">{{$education->degree_title}}</h3>
                                         <p>{{$education->start_date}} - {{$education->end_date}} </p>
                                         <p>{{$education->description}}</p>
+                                        <div>
+                                            <a class="" href="#education_update" uk-toggle ><button onclick="edit_data(this.id)" edit_record_id="{{$education->id}}" id="Edit_Data_{{$education->id}}" degree_title="{{$education->degree_title}}" start_date="{{$education->start_date}}" end_date="{{$education->end_date}}" description="{{$education->description}}" class="myEdiButton uk-button-success uk-button-small">Edit</button></a>
+                                            <a href="{{route('freelancer.delete.education' , $education->id)}}"><button class="uk-button-danger uk-button-small">Delete</button></a>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
