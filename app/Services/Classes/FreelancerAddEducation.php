@@ -6,13 +6,13 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\ServiceProviders\Classes;
-use App\Repositories\ServiceProviders\BaseServiceProvider;
+namespace App\Services\Classes;
+use App\Services\BaseService;
 use App\User;
-use App\UserEducation;
+use App\FreelancerEducation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-class FreelancerAddEducation extends BaseServiceProvider
+class FreelancerAddEducation extends BaseService
 {
     public function addEducation($data){
         $msg = array();
@@ -20,7 +20,7 @@ class FreelancerAddEducation extends BaseServiceProvider
         if (Auth::user()->userDetail->userEducation->count() <= 4) {
             $this->validateData($data)->validate();
             $data = $this->processDataToStore($data);
-            if (UserEducation::create($data)) {
+            if (FreelancerEducation::create($data)) {
                 $status = true;
                 $msg[] = 'Education Added';
             } else {
