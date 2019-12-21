@@ -6,15 +6,15 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\ServiceProviders\Classes;
-use App\Repositories\ServiceProviders\BaseServiceProvider;
-use App\UserEducation;
-class FreelancerDeleteEducation extends BaseServiceProvider
+namespace App\Services\Classes;
+use App\Services\BaseService;
+use App\FreelancerEducation;
+class FreelancerDeleteEducation extends BaseService
 {
     public function deleteEducation($id){
         $msg = array();
         $status = false;
-        $user_education = UserEducation::find($id);
+        $user_education = FreelancerEducation::find($id);
         if ($user_education != null && $user_education->user_id === $this->getUserId()){
             if ($user_education->delete()) {
                 $status = true;
