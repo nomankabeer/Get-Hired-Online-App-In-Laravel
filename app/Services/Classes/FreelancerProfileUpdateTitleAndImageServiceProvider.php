@@ -6,14 +6,14 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\ServiceProviders\Classes;
-use App\Repositories\ServiceProviders\BaseServiceProvider;
+namespace App\Services\Classes;
+use App\Services\BaseService;
 use App\Repositories\Traits\UploadFileTrait;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Repositories\ServiceProviders\Interfaces\FreelancerUpdateProfile;
-class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseServiceProvider implements FreelancerUpdateProfile
+use App\Services\Interfaces\FreelancerUpdateProfile;
+class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService implements FreelancerUpdateProfile
 {
     use UploadFileTrait;
     public function updateFreelancerProfileImgAndTitle($data){
