@@ -6,30 +6,29 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\ServiceProviders\Classes;
-use App\Repositories\ServiceProviders\BaseServiceProvider;
+namespace App\Services\Classes;
+use App\Services\BaseService;
 use App\User;
-use App\UserEducation;
+use App\FreelancerExperience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-class FreelancerUpdateEducation extends BaseServiceProvider
+class FreelancerAddExperience extends BaseService
 {
-    public function updateEducation($data){
+    public function addExperience($data){
         $msg = array();
         $status = false;
-        $user_education = UserEducation::find($data['id']);
-        if ($user_education != null && $user_education->user_id === $this->getUserId()){
+        if (Auth::user()->userDetail->userExperience->count() <= 4) {
             $this->validateData($data)->validate();
             $data = $this->processDataToStore($data);
-            if ($user_education->update($data)) {
+            if (FreelancerExperience::create($data)) {
                 $status = true;
-                $msg[] = 'Education Updated';
+                $msg[] = 'Experience Added';
             } else {
                 $msg[] = 'Something went wrong';
             }
         }
         else{
-            $msg[] = 'Something went wrong. Please Contact to Customer Support';
+            $msg[] = 'You reached your limit to add Experience to your profile';
         }
         $data = array(
             'status' => $status,
@@ -40,7 +39,7 @@ class FreelancerUpdateEducation extends BaseServiceProvider
 
     private function validateData($data){
         return Validator::make($data, [
-            'degree_title' => ['required', 'string', 'min:3' , 'max:40'],
+            'title' => ['required', 'string', 'min:3' , 'max:40'],
             'description' => ['required', 'string', 'min:3' , 'max:500'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],
