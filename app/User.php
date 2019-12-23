@@ -29,6 +29,14 @@ class User extends Authenticatable
     ];
 
     public function userDetail(){
-        return $this->hasOne(UserDetail::class ,  'user_id' , 'id' );
+        return $this->hasOne(FreelancerDetail::class ,  'user_id' , 'id' );
+    }
+
+    public function isFreelancer(){
+        $status = false;
+        if($this->role_id === self::freelancerRoleId){
+            $status = true;
+        }
+        return $status;
     }
 }
