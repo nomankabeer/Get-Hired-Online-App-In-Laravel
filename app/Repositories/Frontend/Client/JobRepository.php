@@ -9,8 +9,8 @@
 namespace App\Repositories\Frontend\Client;
 use App\Job;
 use App\Repositories\BaseRepository;
-use App\Service\Classes\JobAwardServiceProvider;
-use App\Service\Classes\JobStoreServiceProvider;
+use App\Service\Classes\JobAward;
+use App\Service\Classes\JobStore;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 class JobRepository extends BaseRepository
@@ -25,7 +25,7 @@ class JobRepository extends BaseRepository
         $this->redirect = $this->jobDetailURL.$job_id;
 
         //Award Job
-        $awardJobService = new JobAwardServiceProvider();
+        $awardJobService = new JobAward();
         $data = $awardJobService->awardJob($job_id , $bid_id );
 
         if($data['status'] === false){
@@ -45,7 +45,7 @@ class JobRepository extends BaseRepository
 
     public function storeJobData($data){
         $this->redirect = $this->jobListRoute;
-        $awardJobService = new JobStoreServiceProvider();
+        $awardJobService = new JobStore();
         $data = $awardJobService->storeClientJob($data);
         return $this->redirectRoute($data['status'] , $data['msg']);
     }
