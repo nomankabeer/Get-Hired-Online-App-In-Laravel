@@ -8,6 +8,7 @@
 
 namespace App\Repositories\Traits;
 use App\Bids;
+use App\FreelancerSkill;
 use App\Order;
 use App\Skill;
 use App\User;
@@ -22,8 +23,8 @@ trait FreelancerProfileTrait
                 $status = true;
                 $msg = ["Freelancer profile found"];
                 $data['user_detail'] = $active_account->with(['userDetail' , 'userDetail.skills:skill.id,skill.name' , 'userDetail.userEducation' , 'userDetail.userExperience'])->first();
-                $data['order_detail'] = $this->getUserOrderDetail($data['user_detail']->id);
-                $data['skills'] = Skill::get()->all();
+                $data['order_detail'] = $this->getFreelancerOrderDetail($data['user_detail']->id);
+                $data['skills'] = $this->getNotAddedSkillList($active_account->first()->id);
             }
             else{
                 $status = false;
@@ -41,7 +42,12 @@ trait FreelancerProfileTrait
         );
         return $profile_data;
     }
-    private function getUserOrderDetail($id){
+
+    private function getFreelancerOrderDetail($id){
         return Order::whereIn('bid_id' , Bids::where('user_id' , $id)->where('is_awarded' , 1)->pluck('id'))->with('jobDetail')->get();
+    }
+
+    private function getNotAddedSkillList($id){
+        return Skill::whereNotIn('id' , FreelancerSkill::where('user_id' , $id)->pluck('skill_id')->toArray())->get();
     }
 }
