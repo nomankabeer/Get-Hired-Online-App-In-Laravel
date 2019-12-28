@@ -10,10 +10,10 @@ namespace App\Repositories\Frontend\Client;
 use App\Job;
 use App\Order;
 use App\Repositories\BaseRepository;
-use App\Service\Classes\OrderDeliveryStatusUpdateServiceProvider;
-use App\Service\Classes\OrderReviewServiceProvider;
-use App\Service\Classes\OrderStoreServiceProvider;
-use App\Service\Classes\OrderDetailServiceProvider;
+use App\Service\Classes\OrderDeliveryStatusUpdate;
+use App\Service\Classes\OrderReview;
+use App\Service\Classes\OrderStore;
+use App\Service\Classes\OrderDetail;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 class OrderRepository extends BaseRepository
@@ -29,12 +29,12 @@ class OrderRepository extends BaseRepository
             'bid_id' => $bid_id,
             'job_id' => $job_id,
         );
-        $storeOrderService = new OrderStoreServiceProvider();
+        $storeOrderService = new OrderStore();
         return $storeOrderService->createOrderForUser($data);
     }
 
     public function getClientOrderDetail($id){
-        $orderDetail = new OrderDetailServiceProvider();
+        $orderDetail = new OrderDetail();
         $data = $orderDetail->clientOrderDetail($id);
         if($data['status'] === false){
             $this->redirect = $this->orderListRoute;
@@ -47,7 +47,7 @@ class OrderRepository extends BaseRepository
     }
 
     public function updateDeliveryStatus($delivery_id , $status_id){
-        $orderDelivery = new OrderDeliveryStatusUpdateServiceProvider();
+        $orderDelivery = new OrderDeliveryStatusUpdate();
         $data = $orderDelivery->updateDeliveryStatus($delivery_id , $status_id);
         if($data['status'] === false){
             $this->redirect = $this->orderListRoute;
@@ -78,7 +78,7 @@ class OrderRepository extends BaseRepository
     }
 
     public function clientOrderReview($data){
-        $review = new OrderReviewServiceProvider();
+        $review = new OrderReview();
         $data = $review->reviewOrder($data);
         if($data['status'] === false){
             $this->redirect = $this->orderListRoute;
