@@ -13,6 +13,7 @@ class jobController extends Controller
 {
     protected $jobRepository = null;
     private $jobViews = "frontend.freelancer.job";
+    private $appliedJobView = "frontend.freelancer.applied_job";
     public function __construct(JobRepository $jobRepository){
         $this->jobRepository = $jobRepository;
     }
@@ -24,5 +25,14 @@ class jobController extends Controller
     }
     public function getJobDetail($id){
         return $this->jobRepository->jobDetail($id);
+    }
+    public function appliedJobListView(){
+        return view($this->appliedJobView.'.job_list');
+    }
+    public function getAppliedJobList(){
+        return $this->jobRepository->getFreelancerAppliedJobList();
+    }
+    public function freelancerAppliedJobDetail($id){
+        return $this->jobRepository->freelancerAppliedJobDetail($id);
     }
 }
