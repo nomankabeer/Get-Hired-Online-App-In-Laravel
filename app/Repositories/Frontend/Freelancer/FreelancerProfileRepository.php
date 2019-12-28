@@ -46,7 +46,9 @@ class FreelancerProfileRepository extends BaseRepository
         FreelancerUpdateExperience $updateExperience,
         FreelancerDeleteExperience $deleteExperience,
         FreelancerUpdateAboutMe $updateAboutMe,
-        FreelancerAddSkill $addSkill
+        FreelancerAddSkill $addSkill,
+        FreelancerUpdateSkill $updateSkill,
+        FreelancerDeleteSkill $deleteSkill
     )
     {
         $this->updateProfile = $updateProfile;
@@ -58,6 +60,8 @@ class FreelancerProfileRepository extends BaseRepository
         $this->deleteExperience = $deleteExperience;
         $this->updateAboutMe = $updateAboutMe;
         $this->addSkill = $addSkill;
+        $this->updateSkill = $updateSkill;
+        $this->deleteSkill = $deleteSkill;
     }
 
     public function updateProfileImgAndTitle($data){
@@ -120,7 +124,7 @@ class FreelancerProfileRepository extends BaseRepository
         return $this->redirectRoute($data['status'] , $data['msg']);
     }
 
-   /* public function updateFreelancerSkill($data){
+    public function updateFreelancerSkill($data){
         $this->redirect = $this->freelancerProfileRoute;
         $data = $this->updateSkill->updateSkill($data);
         return $this->redirectRoute($data['status'] , $data['msg']);
@@ -130,6 +134,6 @@ class FreelancerProfileRepository extends BaseRepository
         $this->redirect = $this->freelancerProfileRoute;
         $data = $this->deleteSkill->deleteSkill($id);
         return $this->redirectRoute($data['status'] , $data['msg']);
-    }*/
+    }
 
 }
