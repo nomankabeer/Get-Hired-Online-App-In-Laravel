@@ -9,7 +9,7 @@ namespace App\Service\Classes;
 use App\Order;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\Validator;
-class OrderReviewServiceProvider extends BaseService
+class OrderReview extends BaseService
 {
     public function reviewOrder($data){
         $this->validateReviewData($data)->validate();
