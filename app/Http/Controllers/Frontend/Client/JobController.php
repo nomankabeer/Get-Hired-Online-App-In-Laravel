@@ -25,18 +25,6 @@ class jobController extends Controller
     public function store(Request $request) {
         return $this->jobRepository->storeJobData($request->all());
     }
-    public function show($id){
-        //
-    }
-    public function edit($id){
-        //
-    }
-    public function update(Request $request, $id){
-        //
-    }
-    public function destroy($id){
-        //
-    }
     public function getJobList(){
         return $this->jobRepository->getUserJobPosts();
     }
