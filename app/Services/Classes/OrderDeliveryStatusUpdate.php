@@ -11,7 +11,7 @@ use App\Order;
 use App\OrderDelivery;
 use App\Services\BaseService;
 
-class OrderDeliveryStatusUpdateServiceProvider extends BaseService
+class OrderDeliveryStatusUpdate extends BaseService
 
 {
     public function updateDeliveryStatus($delivery_id , $status_id){
