@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -56,9 +57,9 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
 
         Route::group([
-            'namespace' => $this->namespace.'\Frontend\Freelancer',
-            'middleware' => ['web' , 'freelancer' , 'account_status'],
-            'as' => 'freelancer.'] ,
+            'namespace' => $this->namespace.'\Frontend\Client',
+            'middleware' => ['web' , 'client' , 'account_status'],
+            'as' => 'client.'],
             base_path('routes/frontend_routes/client.php')
         );
 
