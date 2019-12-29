@@ -23,4 +23,7 @@ class OrderController extends Controller
     public function orderDelivery(Request $request){
         return $this->orderRepository->orderDelivery($request);
     }
+    public function freelancerOrderReview(Request $request){
+        return $this->orderRepository->freelancerOrderReview($request);
+    }
 }
