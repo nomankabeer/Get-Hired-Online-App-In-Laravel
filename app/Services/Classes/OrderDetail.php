@@ -6,13 +6,13 @@
  * Time: 5:20 AM
  */
 
-namespace App\Service\Classes;
+namespace App\Services\Classes;
 use App\Order;
 use App\Services\BaseService;
 
-class OrderDetailServiceProvider extends BaseService
+class OrderDetail extends BaseService
 {
-    public function clientOrderDetail($order_id){
+    public function OrderDetail($order_id){
         $order = null;
         $check = $this->currentClientOrder($order_id);
         if($check === true){
