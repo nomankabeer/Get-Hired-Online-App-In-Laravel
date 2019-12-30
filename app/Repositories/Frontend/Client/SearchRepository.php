@@ -11,7 +11,7 @@ use App\Job;
 use App\Order;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Client\ServiceProviders\Order\OrderDetail;
-use App\Repositories\Frontend\Client\ServiceProviders\Order\OrderReviewServiceProvider;
+use App\Repositories\Frontend\Client\ServiceProviders\Order\OrderReview;
 use App\Repositories\Frontend\Client\ServiceProviders\Order\StoreOrderService;
 use App\Repositories\Frontend\Client\ServiceProviders\Order\UpdateOrderDeliveryStatus;
 use App\Skill;
