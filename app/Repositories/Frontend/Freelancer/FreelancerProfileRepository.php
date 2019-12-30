@@ -38,7 +38,6 @@ class FreelancerProfileRepository extends BaseRepository
     protected $freelancerProfileView = 'frontend.freelancer.profile.profile';
 
     public function __construct(
-        FreelancerProfileUpdateTitleAndImageServiceProvider $updateProfile ,
         FreelancerAddEducation $addEducation ,
         FreelancerUpdateEducation $updateEducation ,
         FreelancerDeleteEducation $deleteEducation,
@@ -51,7 +50,6 @@ class FreelancerProfileRepository extends BaseRepository
         FreelancerDeleteSkill $deleteSkill
     )
     {
-        $this->updateProfile = $updateProfile;
         $this->addEducation = $addEducation;
         $this->updateEducation = $updateEducation;
         $this->deleteEducation = $deleteEducation;
@@ -65,7 +63,7 @@ class FreelancerProfileRepository extends BaseRepository
     }
 
     public function updateProfileImgAndTitle($data){
-        $updated_data = $this->updateProfile->updateFreelancerProfileImgAndTitle($data);
+        $updated_data = FreelancerProfileUpdateTitleAndImageServiceProvider::updateFreelancerProfileImgAndTitle($data);
         $this->redirect = $this->freelancerProfileRoute;
         return $this->redirectRoute($updated_data['status'] , $updated_data['msg']);
     }
