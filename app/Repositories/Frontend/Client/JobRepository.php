@@ -8,10 +8,11 @@
 
 namespace App\Repositories\Frontend\Client;
 use App\Job;
+use App\Order;
 use App\Repositories\BaseRepository;
-use App\Service\Classes\JobAward;
-use App\Service\Classes\JobStore;
-use Illuminate\Support\Facades\Validator;
+use App\Services\Classes\JobAward;
+use App\Services\Classes\JobStore;
+use App\Services\Classes\OrderStore;
 use Yajra\DataTables\Facades\DataTables;
 class JobRepository extends BaseRepository
 {
@@ -19,6 +20,7 @@ class JobRepository extends BaseRepository
     protected $jobListRoute = 'client.job.list';
     protected $jobDetailView = 'frontend.client.job.job_detail';
     protected $jobDetailURL = "job/detail/";
+    protected $orderListRoute = 'client.orders.list';
 
     public function awardUserBidForJob($job_id , $bid_id){
         //set redirect url
@@ -35,12 +37,16 @@ class JobRepository extends BaseRepository
 
         elseif($data['status'] === true){
         //  Create Order for client and freelancer
-            $orderRepository = new OrderRepository();
-            $order_data = $orderRepository->createOrder($job_id , $bid_id );
-            $data['msg'] = array_merge($data['msg'] , $order_data['msg'] );
-            return $this->redirectURL($data['status'] , $data['msg']);
+            $data = array(
+                'bid_id' => $bid_id,
+                'job_id' => $job_id,
+                'order_id' => uniqid(),
+            );
+            $storeOrderService = new OrderStore();
+            $data = $storeOrderService->createOrderForFreelancer($data);
+            $this->redirect = $this->orderListRoute;
+            return $this->redirectRoute($data['status'] , $data['msg']);
         }
-
     }
 
     public function storeJobData($data){
@@ -51,11 +57,11 @@ class JobRepository extends BaseRepository
     }
 
     public function getUserJobPosts(){
-        return DataTables::of(Job::query()->where('user_id', $this->getUserId())->orderBy('id', 'desc'))
+        return DataTables::of(Job::query()->where('status' , Job::jobActiveId)->where('user_id', $this->getUserId())->orderBy('id', 'desc'))
             ->addColumn('action', function (Job $job) {
                 return '
                 <a href="#" data-toggle="modal" data-target="#editModal" onclick="edit(' . $job->id . ')"  class="btn btn-primary">Edit</a>
-                <a href="' . route("client.job.detail", $job->id) . '" class="btn btn-success">Details</a>
+                <a href="' . route("client.job.details", $job->id) . '" class="btn btn-success">Details</a>
                 <a href="' . route("client.job.delete", $job->id) . '" class="btn btn-danger">Delete</a>
                 ';
             })
@@ -66,9 +72,13 @@ class JobRepository extends BaseRepository
             ->make(true);
     }
 
-    public function getUSerJobDetail($id){
+    public function getClientJobDetail($id){
         $job = Job::where('id' , $id)->where('user_id' , $this->getUserId())
-            ->with(['jobBids:bids.id,bids.job_id,bids.user_id,bids.proposal,bids.bid_amount,bids.is_awarded,bids.created_at' , 'jobBids.userDetail'])
+            ->with([
+                'jobBids:job_bids.id,job_bids.job_id,job_bids.user_id,job_bids.proposal,job_bids.bid_amount,job_bids.is_awarded,job_bids.created_at' ,
+                'jobBids.userDetail:freelancer_detail.user_id,freelancer_detail.first_name,freelancer_detail.last_name,freelancer_detail.title,freelancer_detail.about_me',
+                'jobBids.userDetail.skills:skill.id,skill.name'
+            ])
             ->first();
         if($job === null){
             $this->redirect = $this->jobListRoute;
@@ -82,6 +92,5 @@ class JobRepository extends BaseRepository
             $msg = ['Success'];
             return $this->redirectView($status , $msg , $job);
         }
-
     }
 }
