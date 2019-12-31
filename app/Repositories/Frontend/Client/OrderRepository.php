@@ -61,34 +61,5 @@ class OrderRepository extends BaseRepository
         }
     }
 
-    public function userOrderListData(){
-        $job_ids = Job::where('user_id' , $this->getUserId())->pluck('id');
-        return DataTables::of(Order::query()->with('jobDetail')->whereIn('job_id', $job_ids)->orderBy('id', 'desc'))
-            ->editColumn('created_at', function (Order $order) {
-                return $order->created_at->diffForHumans() ;
-            })
-            ->addColumn('action', function (Order $order) {
-                return '
-                <a href="' . route("client.order.detail", $order->id) . '" class="btn btn-success">View Details</a>
-                ';
-            })
-            ->rawColumns(['action'])
-            ->setRowId(function (Order $order) {
-                return $order->id;
-            })
-            ->make(true);
-    }
 
-    public function clientOrderReview($data){
-        $review = new OrderReview();
-        $data = $review->reviewOrder($data);
-        if($data['status'] === false){
-            $this->redirect = $this->orderListRoute;
-            return $this->redirectRoute($data['status'] , $data['msg']);
-        }
-        elseif($data['status'] === true){
-            $this->redirect = $this->orderDetailURL.$data['order_id'];
-            return $this->redirectURL($data['status'] , $data['msg'] );
-        }
-    }
 }
