@@ -24,6 +24,9 @@ class JobRepository extends BaseRepository
     protected $appliedJobDetailURL = "applied/job/detail/";
     protected $appliedJobDetailView = "frontend.freelancer.applied_job.job_detail";
     protected $appliedJobListRoute = "freelancer.applied.job.list.view";
+    protected $completedJobDetailView = "frontend.freelancer.completed_job.job_detail";
+    protected $completedJobView = "frontend.freelancer.completed_job.job_list";
+    protected $completedJobViewRoute = "freelancer.completed.job.list.view";
 
     protected $jobDetail = null;
     protected $freelancerJobBid = null;
@@ -114,7 +117,13 @@ class JobRepository extends BaseRepository
     public function freelancerCompletedJobDetail($id){
         $jobDetail = new FreelancerJobCompletedDetail();
         $data = $jobDetail->freelancerJobCompletedDetail($id);
-        /*$this->redirect = $this->appliedJobDetailURL.$data['data']->id;
-        return $this->redirectURL($data['status'] , $data['msg']);*/
+        if($data['status'] == false){
+            $this->redirect = $this->completedJobViewRoute;
+            return $this->redirectRoute($data['status'] , $data['msg']);
+        }
+        else{
+            $this->redirect = $this->completedJobDetailView;
+            return $this->redirectView($data['status'] , $data['msg'] , $data['data']);
+        }
     }
 }
