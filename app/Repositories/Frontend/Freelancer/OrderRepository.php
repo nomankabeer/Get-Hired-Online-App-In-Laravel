@@ -75,5 +75,15 @@ class OrderRepository extends BaseRepository
         return $this->redirectURL($data['status'] , $data['msg']);
     }
 
+    public function freelancerOrderReview($data){
+        $jobReview = new freelancerJobCompletedReview();
+        $data = $jobReview->freelancerJobReview($data);
+        if($data['status'] === false){
+            $this->redirect = $this->completedJobListRoute;
+            return $this->redirectRoute($data['status'] , $data['msg']);
+        }
+        $this->redirect = $this->completedJobDetailUrl.$data['order']->job_id;
+        return $this->redirectURL($data['status'] , $data['msg']);
 
+    }
 }
