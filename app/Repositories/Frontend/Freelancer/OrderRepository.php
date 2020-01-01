@@ -65,5 +65,15 @@ class OrderRepository extends BaseRepository
         return $this->redirectView($data['status'] , $data['msg'] , $data['data']);
     }
 
+    public function orderDelivery($data){
+        $data = $this->orderDelivery->orderDelivery($data);
+        if($data['status'] === false){
+            $this->redirect = $this->activeJobListRoute;
+            return $this->redirectRoute($data['status'] , $data['msg']);
+        }
+        $this->redirect = $this->activeJobOrderDetail.$data['data']->id;
+        return $this->redirectURL($data['status'] , $data['msg']);
+    }
+
 
 }
