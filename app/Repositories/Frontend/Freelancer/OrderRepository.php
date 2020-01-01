@@ -6,30 +6,46 @@
  * Time: 5:20 AM
  */
 
-namespace App\Repositories\Frontend\Order;
+namespace App\Repositories\Frontend\Freelancer;
+use App\Bids;
 use App\Job;
 use App\Order;
 use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Validator;
+use App\Services\Classes\FreelancerJobCompletedReview;
+use App\Services\Classes\FreelancerOrderDetail;
+use App\Services\Classes\OrderDelivery;
 use Yajra\DataTables\Facades\DataTables;
 class OrderRepository extends BaseRepository
 {
     protected $redirect = null;
-    protected $orderDetailView = 'frontend.client.job_detail';
+    protected $orderDetail = null;
+    protected $orderDelivery = null;
+    protected $orderListView = 'frontend.freelancer.order.order_list';
+    protected $activeJobListRoute = 'freelancer.active.order.list.view';
+    protected $activeJobOrderView = 'frontend.freelancer.order.order_detail';
+    protected $activeJobOrderDetail = 'active/order/detail/';
+    protected $completedJobDetailUrl = 'completed/job/detail/';
+    protected $completedJobListRoute = 'freelancer.completed.job.list.view';
 
-    public function createOrder(){
-
+    public function __construct(
+        FreelancerOrderDetail $orderDetail,
+        OrderDelivery $orderDelivery
+    )
+    {
+        $this->orderDetail = $orderDetail;
+        $this->orderDelivery = $orderDelivery;
     }
 
-   /* public function userOrderListData(){
-        return "dsfasf";
-        return Order::with('jobDetail')->where('user_id', $this->getUserId())->orderBy('id', 'desc');
-        return DataTables::of(Order::with('jobDetail')->query()->where('user_id', $this->getUserId())->orderBy('id', 'desc'))
+    public function activeOrderListView(){
+        return view($this->orderListView);
+    }
+
+    public function activeOrderList(){
+        $bid_ids = Bids::where('user_id' , $this->getUserId())->where('is_awarded' , 1)->pluck('id');
+        return DataTables::of(Order::query()->with('jobDetail')->whereIn('bid_id' , $bid_ids)->whereNotIn('status', [Order::orderCanceledId , Order::orderCompletedId ])->orderBy('id', 'desc'))
             ->addColumn('action', function (Order $order) {
                 return '
-                <a href="#" data-toggle="modal" data-target="#editModal" onclick="edit(' . $order->id . ')"  class="btn btn-primary">Edit</a>
-                <a href="' . route("client.job.detail", $order->id) . '" class="btn btn-success">Details</a>
-                <a href="' . route("client.job.delete", $order->id) . '" class="btn btn-danger">Delete</a>
+                <a href="' . route("freelancer.active.order.detail", $order->id) . '" class="btn btn-success">Details</a>
                 ';
             })
             ->rawColumns(['action'])
@@ -37,5 +53,17 @@ class OrderRepository extends BaseRepository
                 return $order->id;
             })
             ->make(true);
-    }*/
+    }
+
+    public function activeOrderDetail($id){
+        $data = $this->orderDetail->OrderDetail($id);
+        if($data['status'] === false){
+            $this->redirect = $this->activeJobListRoute;
+            return $this->redirectRoute($data['status'] , $data['msg']);
+        }
+        $this->redirect = $this->activeJobOrderView;
+        return $this->redirectView($data['status'] , $data['msg'] , $data['data']);
+    }
+
+
 }
