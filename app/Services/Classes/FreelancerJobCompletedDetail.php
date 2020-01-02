@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class FreelancerJobCompletedDetail extends BaseService
 {
     public function freelancerJobCompletedDetail($id){
+        $data = null;
         $status = false;
         $msg = "Job Not Found";
         $job = Job::where('id' , $id);
@@ -25,14 +26,22 @@ class FreelancerJobCompletedDetail extends BaseService
                 $bid = Bids::where('user_id' , $this->getUserId())->where('job_id' , $job->id)->first();
                 if($bid != null){
                     $order = Order::with('orderDeliveries')->where('bid_id' , $bid->id)->where('job_id' , $job->id)->where('status' , Order::orderCompletedId)->first();
-                    dd($job->toArray() , $bid->toArray() , $order->toArray());
+                    if($order != null){
+                        $data = array(
+                            'job' => $job,
+                            'bid' => $bid,
+                            'order' => $order,
+                        );
+                        $status = true;
+                        $msg = "Job Found";
+                    }
                 }
             }
         }
         $data = array(
             'status' => $status,
             'msg' => [$msg],
-            'data' => $job,
+            'data' => $data,
         );
         return $data;
     }
