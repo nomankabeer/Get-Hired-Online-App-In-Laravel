@@ -24,7 +24,7 @@ trait FreelancerProfileTrait
                 $msg = ["Freelancer profile found"];
                 $data['user_detail'] = $active_account->with(['userDetail' , 'userDetail.skills:skill.id,skill.name' , 'userDetail.userEducation' , 'userDetail.userExperience'])->first();
                 $data['order_detail'] = $this->getFreelancerOrderDetail($data['user_detail']->id);
-                $data['skills'] = $this->getNotAddedSkillList($active_account->first()->id);
+                $data['skills'] = $this->getNotAddedSkillList($data['user_detail']->id);
             }
             else{
                 $status = false;
