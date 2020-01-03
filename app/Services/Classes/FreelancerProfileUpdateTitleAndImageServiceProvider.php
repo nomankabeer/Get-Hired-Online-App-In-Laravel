@@ -8,20 +8,20 @@
 
 namespace App\Services\Classes;
 use App\Services\BaseService;
-use App\Repositories\Traits\UploadFileTrait;
+use App\Services\Traits\UploadServicesFileTrait;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Services\Interfaces\FreelancerUpdateProfile;
 class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService implements FreelancerUpdateProfile
 {
-    use UploadFileTrait;
-    public function updateFreelancerProfileImgAndTitle($data){
+    use UploadServicesFileTrait;
+    public static function updateFreelancerProfileImgAndTitle($data){
         $user = Auth::user();
         $msg = array();
         $status = false;
         if($user != null){
-                $this->validateTitle($data->all())->validate();
+                self::validateTitle($data->all())->validate();
                 $user->userDetail->title = $data->title;
                 $user->userDetail->first_name = $data->first_name;
                 $user->userDetail->last_name = $data->last_name;
@@ -29,8 +29,8 @@ class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService im
                 $msg[] = 'Profile Successfully updated';
                 $status = true;
             if($data->hasFile('image') === true){
-                $this->validateImage($data->all())->validate();
-                $image = $this->uploadImage($data->file('image') , 'images/userProfile');
+                self::validateImage($data->all())->validate();
+                $image = self::uploadImage($data->file('image') , 'images/userProfile');
                 $user->avatar = $image;
                 $user->update();
                 $msg[] = 'Profile image Successfully updated';
@@ -46,14 +46,14 @@ class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService im
         return $data;
     }
 
-    private function validateTitle($data){
+    private static function validateTitle($data){
         return Validator::make($data, [
             'title' => ['required', 'string', 'min:10' , 'max:40'],
             'first_name' => ['required', 'string', 'min:3' , 'max:20'],
             'last_name' => ['required', 'string', 'min:3' , 'max:20'],
         ]);
     }
-    private function validateImage($data){
+    private static function validateImage($data){
         return Validator::make($data, [
             'image' => ['required','mimes:jpeg,jpg,png' , 'max:2048'],
         ]);
