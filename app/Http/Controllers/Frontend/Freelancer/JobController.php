@@ -35,4 +35,7 @@ class jobController extends Controller
     public function freelancerAppliedJobDetail($id){
         return $this->jobRepository->freelancerAppliedJobDetail($id);
     }
+    public function freelancerJobBid(Request $request){
+        return $this->jobRepository->freelancerJobBid($request);
+    }
 }
