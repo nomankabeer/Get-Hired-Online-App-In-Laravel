@@ -10,17 +10,16 @@ namespace App\Repositories\Frontend\Client;
 use App\Job;
 use App\Order;
 use App\Repositories\BaseRepository;
-use App\Service\Classes\OrderDeliveryStatusUpdate;
-use App\Service\Classes\OrderReview;
-use App\Service\Classes\OrderStore;
-use App\Service\Classes\OrderDetail;
-use Illuminate\Support\Facades\Validator;
+use App\Services\Classes\OrderDeliveryStatusUpdate;
+use App\Services\Classes\OrderDetail;
+use App\Services\Classes\OrderReview;
+use App\Services\Classes\OrderStore;
 use Yajra\DataTables\Facades\DataTables;
 class OrderRepository extends BaseRepository
 {
     protected $redirect = null;
     protected $orderDetailView = 'frontend.client.order.order_detail';
-    protected $orderListRoute = 'client.order.list';
+    protected $orderListRoute = 'client.orders.list';
     protected $orderDetailRoute = 'client.order.detail';
     protected $orderDetailURL = 'order/detail/';
 
@@ -28,14 +27,17 @@ class OrderRepository extends BaseRepository
         $data = array(
             'bid_id' => $bid_id,
             'job_id' => $job_id,
+            'order_id' => uniqid(),
         );
         $storeOrderService = new OrderStore();
-        return $storeOrderService->createOrderForUser($data);
+        $data = $storeOrderService->createOrderForFreelancer($data);
+        $this->redirect = $this->orderListRoute;
+        return $this->redirectRoute($data['status'] , $data['msg']);
     }
 
     public function getClientOrderDetail($id){
         $orderDetail = new OrderDetail();
-        $data = $orderDetail->clientOrderDetail($id);
+        $data = $orderDetail->OrderDetail($id);
         if($data['status'] === false){
             $this->redirect = $this->orderListRoute;
             return $this->redirectRoute($data['status'] , $data['msg']);
