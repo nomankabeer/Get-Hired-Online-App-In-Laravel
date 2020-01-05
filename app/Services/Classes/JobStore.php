@@ -6,15 +6,16 @@
  * Time: 5:20 AM
  */
 
-namespace App\Service\Classes;
+namespace App\Services\Classes;
 use App\Job;
 use Illuminate\Support\Facades\Validator;
 use App\Services\BaseService;
-class JobStoreServiceProvider extends BaseService
+class JobStore extends BaseService
 {
     public function storeClientJob($data){
         $this->validateStoreData($data)->validate();
         $data = $this->processDataToStore($data);
+        $data['job_id'] = uniqid();
         if(Job::create($data)){
             $status = true;
             $msg = ['Job Posted'];
