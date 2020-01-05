@@ -7,39 +7,56 @@
  */
 
 namespace App\Services\Classes;
+use App\Bids;
+use App\Job;
 use App\Order;
 use App\Services\BaseService;
+use Illuminate\Support\Facades\Validator;
 
 class FreelancerJobBid extends BaseService
 {
     public function jobBid($data){
-        dd($data->all());
-        $order = null;
-        $check = $this->currentOrder($data);
-        if($check === true){
-            $order = Order::where('id' , $data)->with("orderDeliveries" , 'jobDetail' , 'bidDetail')->first();
-            $status = true;
-            $msg = ['Record Found'];
+        $this->validateData($data->all())->validate();
+        $status = false;
+        $msg = null;
+        $job = Job::where('job_id' , $data->job_id);
+        if($job->count() != 0){
+            $job = $job->where('status' , Job::jobActiveId)->first();
+            if($job != null){
+                $bid = array(
+                    'job_id' => $job->id,
+                    'bid_amount' => $data->bid_amount,
+                    'proposal' => $data->proposal,
+                    'user_id' => $this->getUserId(),
+                );
+                if(Bids::create($bid)){
+                    $status = true;
+                    $msg = "Your proposal is successfully submitted";
+                }
+                else{
+                    $msg = "Something went wrong";
+                }
+            }
+            else{
+                $msg = "This job is not available to bid";
+            }
         }
-        elseif ($check === false){
-            $status = false;
-            $msg = ['Order Not Found' , 'if you have any issue please contact to customer support'];
+        else{
+            $msg = "Job Not Found";
         }
         $data = array(
             'status' => $status,
-            'msg' => $msg,
-            'data' => $order
+            'msg' => [$msg],
+            'data' => $job,
         );
         return $data;
     }
 
-    private function currentOrder($data){
-        $order = Order::where('id' , $data)->first();
-        if($order != null &&  $order->bidDetail->user_id === $this->getUserId()){
-            return true;
-        }
-        else{
-            return false;
-        }
+    private function validateData($data){
+        return Validator::make($data, [
+            'bid_amount' => ['required', 'integer'],
+            'job_id' => ['required', 'string'],
+            'proposal' => ['required', 'string'],
+        ]);
     }
 }
