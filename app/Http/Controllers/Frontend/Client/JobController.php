@@ -41,7 +41,7 @@ class jobController extends Controller
         return $this->jobRepository->getUserJobPosts();
     }
     public function getJobDetail($id){
-        return $this->jobRepository->getUSerJobDetail($id);
+        return $this->jobRepository->getClientJobDetail($id);
     }
     public function awardJobBid($job_id , $bid_id){
         return $this->jobRepository->awardUserBidForJob($job_id , $bid_id);
