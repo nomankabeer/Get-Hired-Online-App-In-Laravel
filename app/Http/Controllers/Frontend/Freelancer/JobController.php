@@ -14,11 +14,19 @@ class jobController extends Controller
     protected $jobRepository = null;
     private $jobViews = "frontend.freelancer.job";
     private $appliedJobView = "frontend.freelancer.applied_job";
+    private $completedJobView = "frontend.freelancer.completed_job";
+    private $cancelledJobView = "frontend.freelancer.cancelled_job";
     public function __construct(JobRepository $jobRepository){
         $this->jobRepository = $jobRepository;
     }
     public function index(){
         return view($this->jobViews.'.job_list');
+    }
+    public function completedJobListView(){
+        return view($this->completedJobView.'.job_list');
+    }
+    public function cancelledJobListView(){
+        return view($this->cancelledJobView.'.job_list');
     }
     public function getJobList(){
         return $this->jobRepository->getActiveJobList();
@@ -37,5 +45,14 @@ class jobController extends Controller
     }
     public function freelancerJobBid(Request $request){
         return $this->jobRepository->freelancerJobBid($request);
+    }
+    public function getCompletedJobList(){
+        return $this->jobRepository->getFreelancerCompletedJobList();
+    }
+    public function getFreelancerCancelledJobList(){
+        return $this->jobRepository->getFreelancerCancelledJobList();
+    }
+    public function freelancerCompletedJobDetail($id){
+        return $this->jobRepository->freelancerCompletedJobDetail($id);
     }
 }
