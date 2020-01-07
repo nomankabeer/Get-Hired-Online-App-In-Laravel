@@ -6,12 +6,12 @@
  * Time: 5:20 AM
  */
 
-namespace App\Service\Classes;
+namespace App\Services\Classes;
 use App\Bids;
 use App\Job;
 use App\Services\BaseService;
 
-class JobAwardServiceProvider extends BaseService
+class JobAward extends BaseService
 {
     public function awardJob($job_id , $bid_id){
         $job_exist = $this->jobExist($job_id);
@@ -22,7 +22,7 @@ class JobAwardServiceProvider extends BaseService
             if($alreadyAwarded === false){
                 $bidExist = $this->bidExist($bid_id);
                 if($bidExist === true){
-                    $award_job = $this->awardJobToUser($job_id , $bid_id);
+                    $award_job = $this->awardJobToFreelancer($job_id , $bid_id);
                     if($award_job){
 //                     job awarded
                         $status = true;
@@ -76,7 +76,7 @@ class JobAwardServiceProvider extends BaseService
             return false;
         }
     }
-    private function awardJobToUser($job_id , $bid_id){
+    private function awardJobToFreelancer($job_id , $bid_id){
         if(Bids::where('job_id' , $job_id)->where('id' , $bid_id)->update(['is_awarded' => 1])){
             return true;
         }
