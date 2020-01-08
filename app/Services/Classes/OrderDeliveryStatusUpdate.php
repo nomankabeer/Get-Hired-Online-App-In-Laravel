@@ -6,13 +6,13 @@
  * Time: 5:20 AM
  */
 
-namespace App\Service\Classes;
+namespace App\Services\Classes;
+use App\Job;
 use App\Order;
 use App\OrderDelivery;
 use App\Services\BaseService;
 
 class OrderDeliveryStatusUpdate extends BaseService
-
 {
     public function updateDeliveryStatus($delivery_id , $status_id){
         $order_id = null;
@@ -30,6 +30,7 @@ class OrderDeliveryStatusUpdate extends BaseService
                             if($updateStatus === true){
                                 $this->updateOrderStatus($order_id , $status_id);
                                 if($status_id == OrderDelivery::orderDeliveryStatusAcceptedId){
+                                    Job::where('id' , $order_exist->job_id)->update(['status' => Job::jobCompletedId]);
                                     $this->makeOtherDeliveriesRejected($order_id , $delivery_id);
                                 }
                                 $status = true;
@@ -83,7 +84,7 @@ class OrderDeliveryStatusUpdate extends BaseService
     private function currentUserOrderExist($order_id){
         $order = Order::where('id' , $order_id)->first();
         if($order != null && $order->jobDetail->user_id === $this->getUserId()){
-            return true;
+            return $order;
         }
         else{
             return false;
