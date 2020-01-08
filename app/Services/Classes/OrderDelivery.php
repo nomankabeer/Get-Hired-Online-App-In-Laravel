@@ -11,28 +11,38 @@ use App\Order;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\Validator;
 use App\OrderDelivery as OrderDeliveryModel;
+use App\Repositories\Traits\UploadFileTrait;
 class OrderDelivery extends BaseService
 {
-    public function orderDelivery($data){
+    use UploadFileTrait;
+    public function orderDelivery($deliverData){
         $order = null;
         $status = false;
+        $this->validateData($deliverData->all())->validate();
         $data = array(
-            'order_id'=> $data->order_id,
-            'content' => $data->content,
+            'order_id'=> $deliverData->order_id,
+            'content' => $deliverData->content,
         );
-        $this->validateData($data)->validate();
         $authenticatedOrder = $this->authenticateOrder($data);
         if($authenticatedOrder['status'] === true){
             $order = $authenticatedOrder['data'];
-            if($order->status === Order::orderCompletedId){
+            if($order->status === Order::orderCompletedId && OrderDeliveryModel::where('order_id' , $order->id)->where('status' , OrderDeliveryModel::orderDeliveryStatusAcceptedId)->count() == 1){
                 $msg = ['Order is completed'];
             }
             elseif($order->status === Order::orderCanceledId){
                 $msg = ['Order is cancelled'];
             }
             else{
-                $isStored = $this->storeDelivery($data , $order);
-                $msg = ['Order delivered successfully'];
+                $isStored = $this->storeDelivery($deliverData , $order);
+                if($isStored === true){
+                    $order->status = Order::orderDeliveredId;
+                    $order->update();
+                    $status = true;
+                    $msg = ['Order delivered successfully'];
+                }
+                else{
+                    $msg = ['Something went wrong'];
+                }
             }
         }
         elseif ($authenticatedOrder['status'] === false){
@@ -47,8 +57,23 @@ class OrderDelivery extends BaseService
         return $data;
     }
 
-    private function storeDelivery($data , $order){
-//        OrderDeliveryModel::
+    private function storeDelivery($deliverData , $order){
+        $file = null;
+        if($deliverData->hasFile('file')){
+            $file = $this->uploadOrderFiles($deliverData->file , $order->order_id);
+        }
+        $orderDelivery = array(
+            'order_id' => $order->id,
+            'content' => $deliverData->content,
+            'file' => $file,
+            'status' => OrderDeliveryModel::orderDeliveryStatusPendingId,
+        );
+        if(OrderDeliveryModel::create($orderDelivery)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private function authenticateOrder($data){
