@@ -9,7 +9,7 @@
 namespace App\Service\Classes;
 use App\Order;
 use App\Services\BaseService;
-class OrderStatusUpdateServiceProvider extends BaseService
+class OrderStatusUpdate extends BaseService
 {
     /*public function createOrderForUser($data){
         if(Order::create($data)){
