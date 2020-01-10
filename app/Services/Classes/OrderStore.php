@@ -6,12 +6,12 @@
  * Time: 5:20 AM
  */
 
-namespace App\Service\Classes;
+namespace App\Services\Classes;
 use App\Order;
 use App\Services\BaseService;
-class OrderStoreServiceProvider extends BaseService
+class OrderStore extends BaseService
 {
-    public function createOrderForUser($data){
+    public function createOrderForFreelancer($data){
         if(Order::create($data)){
             $status = true;
             $msg = ['Order Created' , 'Visit order detail page'];
