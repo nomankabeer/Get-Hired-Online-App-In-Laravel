@@ -9,5 +9,5 @@
 namespace App\Services\Interfaces;
 interface FreelancerUpdateProfile
 {
-    public function updateFreelancerProfileImgAndTitle($UserTitleFirstNameLastNameAndProfileImage);
+    public static function updateFreelancerProfileImgAndTitle($UserTitleFirstNameLastNameAndProfileImage);
 }
