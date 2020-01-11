@@ -8,7 +8,8 @@
 
 namespace App\Services;
 use App\Repositories\BaseRepository;
-class BaseService extends BaseRepository
-{
+use Carbon\Carbon;
+class BaseService extends BaseRepository {
+
 
 }
