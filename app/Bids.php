@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bids extends Model
 {
     use SoftDeletes;
-    protected $table = "freelancer_bids";
+    protected $table = "job_bids";
     protected $fillable = ['user_id' , 'job_id' , 'bid_amount' , 'proposal' , 'is_awarded'];
 
     public function userData(){
@@ -15,6 +15,6 @@ class Bids extends Model
     }
 
     public function userDetail(){
-        return $this->hasOne('App\UserDetail' , 'user_id' , 'user_id');
+        return $this->hasOne('App\FreelancerDetail' , 'user_id' , 'user_id');
     }
 }
