@@ -16,7 +16,7 @@ class OrderDelivery extends Model
     public const orderDeliveryStatusAccepted = "Accepted";
     public const orderDeliveryStatusRejected = "Rejected";
 
-    protected $fillable = ['order_id' , 'is_accepted' , 'file' , 'created_at' , 'updated_at'];
+    protected $fillable = ['order_id' , 'status' , 'content' , 'file' , 'created_at' , 'updated_at'];
 
     protected $appends = ['orderStatus'];
     public function getorderStatusAttribute(){
