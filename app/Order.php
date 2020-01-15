@@ -20,9 +20,9 @@ class Order extends Model
     public const orderDelivered = "Delivered";
     public const orderCanceled = "Canceled";
 
-    protected $fillable = ['bid_id' , 'job_id' , 'status' , 'client_review' , 'freelancer_review' , 'client_rating' , 'freelancer_rating' , 'created_at' , 'updated_at'];
+    protected $fillable = [ 'order_id' , 'bid_id' , 'job_id' , 'status' , 'client_review' , 'freelancer_review' , 'client_rating' , 'freelancer_rating' , 'created_at' , 'updated_at'];
 
-    protected $appends = array('order_status');
+    protected $appends = array('order_status' , 'allow_delivery');
     public function getOrderStatusAttribute(){
         switch ($this->status){
             case(self::orderActiveId):
@@ -47,5 +47,12 @@ class Order extends Model
     }
     public function bidDetail(){
         return $this->hasOne('App\Bids' , 'id' , 'bid_id');
+    }
+    public function getallowDeliveryAttribute(){
+        $status = true;
+        if($this->status == self::orderCompletedId || $this->status == self::orderCanceledId){
+            $status = false;
+        }
+        return $status;
     }
 }
