@@ -15,6 +15,7 @@ class Order extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('order_id')->unique()->nullable();
             $table->integer('bid_id');
             $table->integer('job_id');
             $table->tinyInteger('status')->default(1);
@@ -22,6 +23,7 @@ class Order extends Migration
             $table->string('freelancer_review')->nullable();
             $table->integer('client_rating')->nullable();
             $table->integer('freelancer_rating')->nullable();
+            $table->dateTime('completed_date')->nullable();
             $table->timestamps();
         });
     }
