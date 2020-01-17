@@ -75,7 +75,7 @@
                     <div class="col-sm-9">
                         <h1 class="card-date">Review</h1>
                         <input type="text" name="client_review">
-                        <input type="hidden" name="order_id" value="{{$data->id}}">
+                        <input type="hidden" name="order_id" value="{{$data->order_id}}">
                         <select name="client_rating"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
 
                     </div>
@@ -90,14 +90,17 @@
                 <div class="card row">
 
                         <div class="card-content">
-                            <div class="col-sm-9">
+                            <div class="col-sm-6">
                                 <h1 class="card-date">Client Review</h1>
                      {{$data->client_review}}<br>
                                 {{$data->client_rating}}
                             </div>
-                            <div class="col-sm-3">
-
+                            <div class="col-sm-6">
+                                <h1 class="card-date">Freelancer Review</h1>
+                                {{$data->freelancer_review}}<br>
+                                {{$data->freelancer_rating}}
                             </div>
+
                         </div>
 
                 </div>
