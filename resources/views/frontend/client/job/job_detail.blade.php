@@ -38,9 +38,11 @@
                         {{$bids->userDetail->first_name}} {{$bids->userDetail->last_name}}
                         <img src="{{asset('images/pic02.jpg')}}" alt=''>
                         <div>{{$bids->userDetail->title}}</div>
-                        @foreach($bids->userDetail->user_skills as $skill)
-                        <span class="badge badge-pill badge-background text-white">{{$skill}}</span>
+                        @if($bids->userDetail->skills != null)
+                        @foreach($bids->userDetail->skills as $skill)
+                        <span class="badge badge-pill badge-background text-white">{{$skill->name}}</span>
                         @endforeach
+                            @endif
                     </div>
                     @endif
                     <div>
