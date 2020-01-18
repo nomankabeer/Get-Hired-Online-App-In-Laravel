@@ -10,9 +10,11 @@
  *
  * */
 
+//namespace frontend/client
 //prefix as client.
 
-    Route::get('job/detail/{id}' , 'JobController@getJobDetail')->name('job.detail')->where('id' , '[0-9]+');
+
+    Route::get('job/details/{id}' , 'JobController@getJobDetail')->name('job.details')->where('id' , '[0-9]+');
     Route::get('job/delete/{id}' , 'JobController@getJobList')->name('job.delete')->where('id' , '[0-9]+');
     Route::get('job/list/data' , 'JobController@getJobList')->name('job.list.data');
     Route::get('job/list' , 'JobController@index')->name('job.list');
@@ -22,7 +24,7 @@
     Route::get('job/award/{job_id}/{bid_id}' , 'JobController@awardJobBid')->name('job.award')->where('bid_id' , '[0-9]+')->where('job_id' , '[0-9]+');
 
     Route::get('order/list/data', 'OrderController@getOrderList')->name('order.list.data');
-    Route::get('order/list', 'OrderController@index')->name('order.list');
+    Route::get('orders/list', 'OrderController@index')->name('orders.list');
 
     Route::get('order/detail/{id}', 'OrderController@orderDetail')->name('order.detail')->where('id' , '[0-9]+');
     Route::get('order/update/delivery/status/{order_deliver_id}/{status}', 'OrderController@orderUpdateDeliveryStatus')->name('order.update.delivery.status')->where('order_deliver_id' , '[0-9]+')->where('status' , '[0-9]+');
