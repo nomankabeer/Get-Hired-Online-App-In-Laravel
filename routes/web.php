@@ -9,9 +9,15 @@
  * socialite
  *
  * */
+
+
+
+
 Auth::routes();
 Route::get('', 'HomeController@index')->name('home');
 Route::redirect('/home' , '/');
+Route::view('client/index' , 'client/index')->name('index');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout')->middleware('auth');
 
 
@@ -19,14 +25,27 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 
 
 
+
+
+
+
+
+
+
+
+
+
+//Route::get('fsd' , function(){return 123;})->name('client.job.detail');
+
 //client routes
-/*Route::view('client/index' , 'client/index')->name('index');
+
+/*
+
 
 Route::view('job/detail' , 'client/job_detail')->name('job.detail');
 Route::view('job/edit' , 'add_job')->name('job.edit');
 Route::view('job/delete' , 'add_job')->name('job.delete');
 Route::view('user/profile' , 'user_profile');*/
-
 
 
 //freelancer routes
