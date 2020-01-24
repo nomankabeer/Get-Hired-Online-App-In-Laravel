@@ -5,6 +5,8 @@
     @include('modal.freelancerProfile.aboutMe')
     @include('modal.freelancerProfile.education')
     @include('modal.freelancerProfile.education_update')
+    @include('modal.freelancerProfile.experience_update')
+    @include('modal.freelancerProfile.skills_update')
     @include('modal.freelancerProfile.experience')
     @include('modal.freelancerProfile.skills')
     <!-- Intro -->
@@ -92,6 +94,10 @@
                                         <h3 class="uk-card-title">{{$experience->title}}</h3>
                                         <p>{{$experience->start_date}} - {{$experience->end_date}} </p>
                                         <p>{{$experience->description}}</p>
+                                        <div>
+                                            <a class="" href="#experience_update" uk-toggle ><button onclick="edit_data(this.id)" edit_record_id="{{$experience->id}}" id="Edit_Data_{{$experience->id}}" title="{{$experience->title}}" start_date="{{$experience->start_date}}" end_date="{{$experience->end_date}}" description="{{$experience->description}}" class="myEdiButton uk-button-success uk-button-small">Edit</button></a>
+                                            <a href="{{route('freelancer.delete.experience' , $experience->id)}}"><button class="uk-button-danger uk-button-small">Delete</button></a>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -113,7 +119,17 @@
             <p>
                 @if($data['user_detail']->userDetail->skills != null)
                     @foreach($data['user_detail']->userDetail->skills as $skill)
-                        {{$skill->name}} -
+                        <div class="uk-inline">
+                            <button class="uk-button uk-button-primary" type="button">{{$skill->name}}</button>
+                            <div uk-drop="mode: click">
+                                <div class="uk-card uk-card-body uk-card-default">
+                                    <div>
+                                        <a class="uk-drop-close" href="#skills_update" uk-toggle ><button onclick="edit_data(this.id)" edit_record_id="{{$skill->id}}" id="Edit_Data_{{$skill->id}}" name="{{$skill->name}}"  class="myEdiButton uk-button-success uk-button-small">Edit</button></a>
+                                        <a href="{{route('freelancer.delete.skill' , $skill->id)}}"><button class="uk-button-danger uk-button-small">Delete</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 @endif
             </p>
