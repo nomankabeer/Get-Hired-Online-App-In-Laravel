@@ -20,9 +20,9 @@ class Order extends Migration
             $table->integer('job_id');
             $table->tinyInteger('status')->default(1);
             $table->string('client_review')->nullable();
-            $table->string('freelancer_review')->nullable();
+            $table->string('worker_review')->nullable();
             $table->integer('client_rating')->nullable();
-            $table->integer('freelancer_rating')->nullable();
+            $table->integer('worker_rating')->nullable();
             $table->dateTime('completed_date')->nullable();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Services\Interfaces\FreelancerUpdateProfile;
-class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService implements FreelancerUpdateProfile
+class FreelancerProfileUpdateTitleAndImageServiceProvider extends BaseService
 {
     use UploadServicesFileTrait;
     public static function updateFreelancerProfileImgAndTitle($data){
